@@ -1,9 +1,11 @@
 package de.stphngrtz.hellokafka;
 
-import java.io.Serializable;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.math.BigDecimal;
 
-public class MyDTO implements Serializable {
+public class MyDTO {
     public int id;
     public String name;
     public BigDecimal value;
@@ -15,5 +17,10 @@ public class MyDTO implements Serializable {
                 ", name='" + name + '\'' +
                 ", value=" + value +
                 '}';
+    }
+
+    public static MyDTO fromJSON(String json) throws IOException {
+        ObjectMapper om = new ObjectMapper();
+        return om.readValue(json, MyDTO.class);
     }
 }

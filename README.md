@@ -1,26 +1,23 @@
 # hello-kafka
 
-Basiert auf kafka_2.10-0.8.2.2.tgz (einfach entpacken und in gewünschtes Verzeichnis verschieben)
+Basiert auf kafka_2.10-0.8.2.2.tgz
 
-## Zookeeper starten
-./kafka_2.10-0.8.2.2/bin/zookeeper-server-start.sh config/zookeeper.properties
+cd kafka_2.10-0.8.2.2
 
-## Kafka starten
-./kafka_2.10-0.8.2.2/bin/kafka-server-start.sh config/server.properties
+Zookeeper starten
+`./bin/zookeeper-server-start.sh config/zookeeper.properties`
 
-## Topic erstellen
-./kafka_2.10-0.8.2.2/bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test
+Kafka starten
+`./bin/kafka-server-start.sh config/server.properties`
 
-## Consumer
-./kafka_2.10-0.8.2.2/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning
+Topic erstellen
+`./bin/kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic test`
 
-## Producer
-./kafka_2.10-0.8.2.2/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test
+Topcis auflisten
+`./bin/kafka-topics.sh --list --zookeeper localhost:2181`
 
-## Offene Punkte
-* Aufteilen von Consumer und Producer auf unterschiedliche Anwendungen
-  * Command als Producer
-  * Services als Consumer (<artifactId>kafka-clients</artifactId>, http://mvnrepository.com/artifact/org.apache.kafka/kafka-clients/0.8.2.2)
-* Consumen aus mehreren Threads funktioniert noch nicht
+Consumer
+`./bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic test --from-beginning`
 
-https://cwiki.apache.org/confluence/display/KAFKA/Consumer+Group+Example
+Producer
+`./bin/kafka-console-producer.sh --broker-list localhost:9092 --topic test`
