@@ -1,0 +1,4 @@
+.idea
+*.iml
+target
+kafka_2.10-0.8.2.2
